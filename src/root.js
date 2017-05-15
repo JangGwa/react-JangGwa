@@ -2,9 +2,11 @@
  * Created by zkw on 2017/5/15.
  */
 import React from 'react';
-import { Link } from 'react-router';
+import { browserHistory, Router, Route, Link } from 'react-router';
 import { Layout, Menu, Icon } from 'antd';
 import '../index.css';
+import RegisterRecord from './containers/RegisterRecord';
+import LoginRecord from './containers/LoginRecord';
 
 const { Header, Sider, Content } = Layout;
 
@@ -50,7 +52,15 @@ class root extends React.Component {
               <Menu.Item key="5"><Link to="/buy">短信包购买</Link></Menu.Item>
             </Menu>
           </Sider>
-          <Content></Content>
+          <Content>
+            <Router history={browserHistory}>
+              <Route path="/register" component={RegisterRecord} />
+              <Route path="/login" component={LoginRecord} />
+              <Route path="/send" component={RegisterRecord} />
+              <Route path="/recharge" component={RegisterRecord} />
+              <Route path="/buy" component={RegisterRecord} />
+            </Router>
+          </Content>
         </Layout>
       </Layout>
     );

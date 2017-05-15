@@ -4,6 +4,8 @@ html, body, #root {
 }
 
 .ant-layout-header {
+  height: 45px !important;
+  line-height: 45px !important;
   background: #5b5b5b !important;
 }
 
@@ -21,4 +23,51 @@ html, body, #root {
 
 .quit-view {
   cursor: pointer;
+}
+
+.ant-menu-item:hover {
+  background: #ecfbfd;
+}
+
+.content-view {
+  padding: 50px 30px 0 30px;
+}
+
+.total-msg-view {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: -12px;
+  margin-right: -12px;
+}
+
+.total-msg-item {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-right:  1px  dashed #9b9b9b;
+  height: 80px;
+}
+
+.total-msg-last-item {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 80px;
+}
+
+.dan-wei-text {
+  margin-left: 12px;
+}
+
+.total-msg-bottom {
+  margin-top: 20px;
+}
+
+.total-msg-text {
+  color: #4fcbfe;
 }
