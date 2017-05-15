@@ -2,3 +2,23 @@
 html, body, #root {
   height: 100%;
 }
+
+.ant-layout-header {
+  background: #5b5b5b !important;
+}
+
+.ant-layout-sider {
+  background: #fff !important;
+}
+
+.ant-layout-content {
+  background: #ececec !important;
+}
+
+.ant-layout {
+  height: 100%;
+}
+
+.quit-view {
+  cursor: pointer;
+}
