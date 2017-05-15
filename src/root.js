@@ -2,6 +2,7 @@
  * Created by zkw on 2017/5/15.
  */
 import React from 'react';
+import { Link } from 'react-router';
 import { Layout, Menu, Icon } from 'antd';
 import '../index.css';
 
@@ -15,7 +16,7 @@ class root extends React.Component {
     }
   }
 
-  handleClick=(e) => {
+  handleClick = (e) => {
     this.setState({
       current: e.key,
     });
@@ -42,11 +43,11 @@ class root extends React.Component {
               selectedKeys={this.state.current}
               mode="inline"
             >
-              <Menu.Item key="1">用户注册</Menu.Item>
-              <Menu.Item key="2">登陆记录</Menu.Item>
-              <Menu.Item key="3">发送短信</Menu.Item>
-              <Menu.Item key="4">充值</Menu.Item>
-              <Menu.Item key="5">短信包购买</Menu.Item>
+              <Menu.Item key="1"><Link to="/register">用户注册</Link></Menu.Item>
+              <Menu.Item key="2"><Link to="/login">登陆记录</Link></Menu.Item>
+              <Menu.Item key="3"><Link to="/send">发送短信</Link></Menu.Item>
+              <Menu.Item key="4"><Link to="/recharge">充值</Link></Menu.Item>
+              <Menu.Item key="5"><Link to="/buy">短信包购买</Link></Menu.Item>
             </Menu>
           </Sider>
           <Content></Content>
