@@ -9,24 +9,25 @@ import TableComponent from '../components/TableComponent';
 
 const dataSource = [{
   key: '1',
-  id: '0001',
+  id: 1,
+  userId: 1,
   name: '胡彦斌',
   phone: 15706844099,
-  loginTime: '2017年1月1日',
-  operationTime: '1h 3min',
-}, {
-  key: '2',
-  id: '0001',
-  name: '胡彦斌',
-  phone: 15706844099,
-  loginTime: '2017年1月1日',
-  operationTime: '1h 3min',
+  buyTime: '2017年1月1日',
+  buyType: '支付宝',
+  moneyCount: 100,
+  payType: '操作',
+  buyStatus: '状态',
 }];
 
 const columns = [{
-  title: '用户ID',
+  title: '订单ID',
   dataIndex: 'id',
   key: 'id',
+}, {
+  title: '用户ID',
+  dataIndex: 'userId',
+  key: 'userId',
 }, {
   title: '姓名',
   dataIndex: 'name',
@@ -37,13 +38,25 @@ const columns = [{
   dataIndex: 'phone',
   key: 'phone',
 }, {
-  title: '登录时间',
-  dataIndex: 'loginTime',
-  key: 'loginTime',
+  title: '购买时间',
+  dataIndex: 'buyTime',
+  key: 'buyTime',
 }, {
-  title: '操作时长',
-  dataIndex: 'operationTime',
-  key: 'operationTime',
+  title: '购买类型',
+  dataIndex: 'buyType',
+  key: 'buyType',
+}, {
+  title: '金额总计',
+  dataIndex: 'moneyCount',
+  key: 'moneyCount',
+}, {
+  title: '支付方式',
+  dataIndex: 'payType',
+  key: 'payType',
+}, {
+  title: '购买状态',
+  dataIndex: 'buyStatus',
+  key: 'buyStatus',
 }];
 
 class BuyMsgPackage extends React.Component {

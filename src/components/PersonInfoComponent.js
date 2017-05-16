@@ -6,7 +6,7 @@ import React from 'react';
 class PersonInfoComponent extends React.Component {
   render() {
     return (
-      <div style={{ width: 240, backgroundColor: '#fff', float: 'left' }}>
+      <div style={{ width: 240, height: 600, backgroundColor: '#fff', float: 'left' }}>
         <div style={{ marginTop: 30, marginLeft: 20 }}>
           <span>用户ID:</span><span style={{ marginLeft: 10 }}>0001</span>
         </div>

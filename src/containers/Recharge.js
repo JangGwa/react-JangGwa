@@ -9,24 +9,24 @@ import TableComponent from '../components/TableComponent';
 
 const dataSource = [{
   key: '1',
-  id: '0001',
+  orderId: 1,
+  userId: 1,
   name: '胡彦斌',
   phone: 15706844099,
-  loginTime: '2017年1月1日',
-  operationTime: '1h 3min',
-}, {
-  key: '2',
-  id: '0001',
-  name: '胡彦斌',
-  phone: 15706844099,
-  loginTime: '2017年1月1日',
-  operationTime: '1h 3min',
+  rechargeTime: '2017年1月1日',
+  rechargeNum: 100,
+  payType: '操作',
+  rechargeStatus: '状态',
 }];
 
 const columns = [{
+  title: '订单ID',
+  dataIndex: 'orderId',
+  key: 'orderId',
+}, {
   title: '用户ID',
-  dataIndex: 'id',
-  key: 'id',
+  dataIndex: 'userId',
+  key: 'userId',
 }, {
   title: '姓名',
   dataIndex: 'name',
@@ -37,26 +37,34 @@ const columns = [{
   dataIndex: 'phone',
   key: 'phone',
 }, {
-  title: '登录时间',
-  dataIndex: 'loginTime',
-  key: 'loginTime',
+  title: '充值时间',
+  dataIndex: 'rechargeTime',
+  key: 'rechargeTime',
 }, {
-  title: '操作时长',
-  dataIndex: 'operationTime',
-  key: 'operationTime',
+  title: '充值金额',
+  dataIndex: 'rechargeNum',
+  key: 'rechargeNum',
+}, {
+  title: '支付方式',
+  dataIndex: 'payType',
+  key: 'payType',
+}, {
+  title: '充值状态',
+  dataIndex: 'rechargeStatus',
+  key: 'rechargeStatus',
 }];
 
 class Recharge extends React.Component {
   render() {
     return (
-        <div className="content-view">
-          <TotalMsgComponent />
-          <ChartDataComponent chartStyle={{ marginTop: 50 }} />
-          <TableComponent
-            columns={columns}
-            dataSource={dataSource}
-          />
-        </div>
+      <div className="content-view">
+        <TotalMsgComponent />
+        <ChartDataComponent chartStyle={{ marginTop: 50 }} />
+        <TableComponent
+          columns={columns}
+          dataSource={dataSource}
+        />
+      </div>
     );
   }
 }

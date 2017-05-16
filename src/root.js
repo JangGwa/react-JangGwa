@@ -9,8 +9,9 @@ import RegisterRecord from './containers/RegisterRecord';
 import LoginRecord from './containers/LoginRecord';
 import PersonInfo from './containers/PersonInfo';
 import SignManage from './containers/SignManage';
-import SignManage from './containers/SignManage';
-import SignManage from './containers/SignManage';
+import SendMsg from './containers/SendMsg';
+import Recharge from './containers/Recharge';
+import BuyMsgPackage from './containers/BuyMsgPackage';
 
 const { Header, Sider, Content } = Layout;
 
@@ -62,9 +63,9 @@ class root extends React.Component {
               <Route path="/register" component={RegisterRecord} />
               <Route path="/sign" component={SignManage} />
               <Route path="/login" component={LoginRecord} />
-              <Route path="/send" component={RegisterRecord} />
-              <Route path="/recharge" component={RegisterRecord} />
-              <Route path="/buy" component={RegisterRecord} />
+              <Route path="/send" component={SendMsg} />
+              <Route path="/recharge" component={Recharge} />
+              <Route path="/buy" component={BuyMsgPackage} />
               <Route path="/info" component={PersonInfo} />
             </Router>
           </Content>
