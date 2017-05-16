@@ -7,6 +7,10 @@ import { Layout, Menu, Icon } from 'antd';
 import '../index.css';
 import RegisterRecord from './containers/RegisterRecord';
 import LoginRecord from './containers/LoginRecord';
+import PersonInfo from './containers/PersonInfo';
+import SignManage from './containers/SignManage';
+import SignManage from './containers/SignManage';
+import SignManage from './containers/SignManage';
 
 const { Header, Sider, Content } = Layout;
 
@@ -39,26 +43,29 @@ class root extends React.Component {
         <Layout>
           <Sider>
             <Menu
-              theme="Light"
+              theme="dark"
               style={{ width: 200 }}
               onClick={this.handleClick}
               selectedKeys={this.state.current}
               mode="inline"
             >
               <Menu.Item key="1"><Link to="/register">用户注册</Link></Menu.Item>
-              <Menu.Item key="2"><Link to="/login">登录记录</Link></Menu.Item>
-              <Menu.Item key="3"><Link to="/send">发送短信</Link></Menu.Item>
-              <Menu.Item key="4"><Link to="/recharge">充值</Link></Menu.Item>
-              <Menu.Item key="5"><Link to="/buy">短信包购买</Link></Menu.Item>
+              <Menu.Item key="2"><Link to="/sign">签名管理</Link></Menu.Item>
+              <Menu.Item key="3"><Link to="/login">登录记录</Link></Menu.Item>
+              <Menu.Item key="4"><Link to="/send">发送短信</Link></Menu.Item>
+              <Menu.Item key="5"><Link to="/recharge">充值</Link></Menu.Item>
+              <Menu.Item key="6"><Link to="/buy">短信包购买</Link></Menu.Item>
             </Menu>
           </Sider>
           <Content>
             <Router history={hashHistory}>
               <Route path="/register" component={RegisterRecord} />
+              <Route path="/sign" component={SignManage} />
               <Route path="/login" component={LoginRecord} />
               <Route path="/send" component={RegisterRecord} />
               <Route path="/recharge" component={RegisterRecord} />
               <Route path="/buy" component={RegisterRecord} />
+              <Route path="/info" component={PersonInfo} />
             </Router>
           </Content>
         </Layout>

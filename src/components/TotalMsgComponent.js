@@ -6,7 +6,7 @@ import { Card } from 'antd';
 import '../../index.css';
 
 // 页面上方的总数据
-class TotalMsgComponent extends React.PureComponent {
+class TotalMsgComponent extends React.Component {
   render() {
     return (
       <div>

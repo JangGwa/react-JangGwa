@@ -9,12 +9,9 @@ html, body, #root {
   background: #5b5b5b !important;
 }
 
-.ant-layout-sider {
-  background: #fff !important;
-}
 
 .ant-layout-content {
-  background: #ececec !important;
+  background: #f2f2f2 !important;
 }
 
 .ant-layout {
@@ -99,4 +96,14 @@ html, body, #root {
   color: #797979 !important;
   height: 40px;
   padding-top: 10px;
+}
+
+.ant-table-thead > tr > th {
+  background: #e4e4e4 !important;
+  text-align: center !important;
+}
+
+.ant-table-tbody > tr > td {
+  background: #fff !important;
+  text-align: center;
 }

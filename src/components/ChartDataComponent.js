@@ -1,7 +1,7 @@
 /**
  * Created by zkw on 2017/5/15.
  */
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { DatePicker, Menu, Dropdown, Icon, Button } from 'antd';
 import moment from 'moment';
 
@@ -20,6 +20,10 @@ const menu = (
   </Menu>
 );
 
+const propTypes = {
+  chartStyle: PropTypes.style,
+};
+
 class ChartDataComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -30,7 +34,7 @@ class ChartDataComponent extends React.Component {
 
   render() {
     return (
-      <div style={{ marginTop: 50 }} className="chart-data-view">
+      <div style={this.props.chartStyle} className="chart-data-view">
         <div className="chart-data-top-view">
           <div className="chart-data-top-left-view">
             <div style={{ borderRight: '1px solid #e4e4e4', marginRight: 10, marginLeft: 10, paddingRight: 5 }}>
@@ -50,5 +54,7 @@ class ChartDataComponent extends React.Component {
     );
   }
 }
+
+ChartDataComponent.propTypes = propTypes;
 
 export default ChartDataComponent;
