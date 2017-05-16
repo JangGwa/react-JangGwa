@@ -6,9 +6,9 @@ import React from 'react';
 class RegisterRecord extends React.Component {
   render() {
     return (
-        <div>
-          <div>LoginRecord</div>
-        </div>
+      <div>
+        <div>LoginRecord</div>
+      </div>
     );
   }
 }

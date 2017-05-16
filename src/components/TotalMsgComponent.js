@@ -5,6 +5,7 @@ import React from 'react';
 import { Card } from 'antd';
 import '../../index.css';
 
+// 页面上方的总数据
 class TotalMsgComponent extends React.PureComponent {
   render() {
     return (

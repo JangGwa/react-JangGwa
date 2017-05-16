@@ -2,7 +2,7 @@
  * Created by zkw on 2017/5/15.
  */
 import React from 'react';
-import { browserHistory, Router, Route, Link } from 'react-router';
+import { hashHistory, Router, Route, Link } from 'react-router';
 import { Layout, Menu, Icon } from 'antd';
 import '../index.css';
 import RegisterRecord from './containers/RegisterRecord';
@@ -46,14 +46,14 @@ class root extends React.Component {
               mode="inline"
             >
               <Menu.Item key="1"><Link to="/register">用户注册</Link></Menu.Item>
-              <Menu.Item key="2"><Link to="/login">登陆记录</Link></Menu.Item>
+              <Menu.Item key="2"><Link to="/login">登录记录</Link></Menu.Item>
               <Menu.Item key="3"><Link to="/send">发送短信</Link></Menu.Item>
               <Menu.Item key="4"><Link to="/recharge">充值</Link></Menu.Item>
               <Menu.Item key="5"><Link to="/buy">短信包购买</Link></Menu.Item>
             </Menu>
           </Sider>
           <Content>
-            <Router history={browserHistory}>
+            <Router history={hashHistory}>
               <Route path="/register" component={RegisterRecord} />
               <Route path="/login" component={LoginRecord} />
               <Route path="/send" component={RegisterRecord} />
