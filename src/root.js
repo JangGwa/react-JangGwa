@@ -12,6 +12,7 @@ import SignManage from './containers/SignManage';
 import SendMsg from './containers/SendMsg';
 import Recharge from './containers/Recharge';
 import BuyMsgPackage from './containers/BuyMsgPackage';
+import LoginPage from './containers/LoginPage';
 
 const { Header, Sider, Content } = Layout;
 
@@ -30,6 +31,16 @@ class root extends React.Component {
   }
 
   render() {
+    return this.renderLoginPage();
+  }
+
+  renderLoginPage () {
+    return(
+      <LoginPage />
+    );
+  }
+
+  renderMain() {
     return (
       <Layout>
         <Header>
