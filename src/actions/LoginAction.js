@@ -4,15 +4,18 @@
 import axios from 'axios';
 import {api, apiPath} from '../utils/WebAPI';
 import {LOGIN} from '../constants/actionTypes';
+import loginService from '../services/loginService';
+
+const loginDone = (userData) => ({
+  type: LOGIN, payload: userData,
+});
 
 export function login(username, password) {
   return dispatch => {
-    api.post(apiPath.login, {name: username, password: password})
+    loginService.login(username, password)
         .then(function (response) {
-          console.log('ss' + response);
-          dispatch({
-            type: LOGIN, payload: 'ss'
-          })
+          let res = response.data;
+          console.log('jinle', JSON.stringify(res));
         })
   }
 }

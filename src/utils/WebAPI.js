@@ -5,6 +5,8 @@ const baseURL = 'http://test.muyucloud.com/';
 export const apiPath = {
   login: 'admin/login',
   getBase: 'admin/get/base',
+  getRegister: 'admin/register/situation',
+  getSign: 'admin/get/sign',
 };
 
 export const api = {

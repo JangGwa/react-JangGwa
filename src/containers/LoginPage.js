@@ -17,6 +17,13 @@ class LoginPage extends React.Component {
     }
   }
 
+  componentDidMount() {
+    let userName = window.localStorage.getItem('username');
+    if (userName) {
+      this.setState({username: userName})
+    }
+  }
+
   userNameChange = (e) => {
     this.setState({
       username: e.target.value,
@@ -30,14 +37,16 @@ class LoginPage extends React.Component {
   }
 
   login = () => {
-    window.localStorage.setItem("username", this.state.username);
-    window.localStorage.setItem("password", this.state.password);
-    api.post(apiPath.login, {name: this.state.username, password: this.state.password})
+    let username = this.state.username;
+    let password = this.state.password;
+    api.post(apiPath.login, {name: username, password: password})
         .then(function (response) {
           let res = response.data;
           if (res.status === 'success') {
             if (res.data !== false) {
               Cookie.set('token', res.data);
+              window.localStorage.setItem("username", username);
+              window.localStorage.setItem("password", password);
               window.location.hash = '/home';
             } else {
               message.error('用户名或密码错误');
@@ -53,7 +62,7 @@ class LoginPage extends React.Component {
         <div className="login-main-view">
           <div style={{color: '#FFF', fontSize: 20, marginTop: -30}}>慕云短信后台管理系统</div>
           <Card style={{width: 300, height: 200, textAlign: 'center', marginTop: 30}}>
-            <Input placeholder="用户名" style={{marginTop: 15}} onChange={this.userNameChange}/>
+            <Input placeholder="用户名" style={{marginTop: 15}} onChange={this.userNameChange} value={this.state.username}/>
             <Input placeholder="密码" style={{marginTop: 20}} onChange={this.passwordChange}/>
             <Button type="primary" style={{marginTop: 20, width: 250}} onClick={this.login}>登录</Button>
           </Card>

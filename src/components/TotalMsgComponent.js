@@ -4,7 +4,6 @@
 import React from 'react';
 import {Card, message} from 'antd';
 import {api, apiPath} from '../utils/WebAPI';
-import Cookie from '../utils/Cookie';
 import '../../index.css';
 
 // 页面上方的总数据
