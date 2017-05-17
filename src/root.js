@@ -2,9 +2,10 @@
  * Created by zkw on 2017/5/15.
  */
 import React from 'react';
-import { hashHistory, Router, Route, Link } from 'react-router';
+import { hashHistory, IndexRoute, Router, Route, Link } from 'react-router';
 import { Layout, Menu, Icon } from 'antd';
 import '../index.css';
+import Cookie from './utils/Cookie';
 import RegisterRecord from './containers/RegisterRecord';
 import LoginRecord from './containers/LoginRecord';
 import PersonInfo from './containers/PersonInfo';
@@ -31,16 +32,6 @@ class root extends React.Component {
   }
 
   render() {
-    return this.renderLoginPage();
-  }
-
-  renderLoginPage () {
-    return(
-      <LoginPage />
-    );
-  }
-
-  renderMain() {
     return (
       <Layout>
         <Header>
@@ -71,6 +62,7 @@ class root extends React.Component {
           </Sider>
           <Content>
             <Router history={hashHistory}>
+              <IndexRoute component={RegisterRecord} />
               <Route path="/register" component={RegisterRecord} />
               <Route path="/sign" component={SignManage} />
               <Route path="/login" component={LoginRecord} />

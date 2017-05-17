@@ -20,16 +20,16 @@ const menu = (
   </Menu>
 );
 
-const propTypes = {
-  chartStyle: PropTypes.style,
-};
-
 class ChartDataComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       recentDays: '最近30天',
     };
+  }
+
+  exportModal = () => {
+
   }
 
   render() {
@@ -48,13 +48,15 @@ class ChartDataComponent extends React.Component {
               format={dateFormat}
             />
           </div>
-          <Button type="primary" style={{ marginRight: 10 }}>导出Excel</Button>
+          <Button type="primary" style={{ marginRight: 10 }} onClick={this.exportModal}>导出Excel</Button>
         </div>
       </div>
     );
   }
 }
 
-ChartDataComponent.propTypes = propTypes;
+ChartDataComponent.propTypes = {
+  chartStyle: PropTypes.style,
+};
 
 export default ChartDataComponent;
