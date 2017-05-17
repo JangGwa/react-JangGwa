@@ -20,7 +20,7 @@ class ChartDataComponent extends React.Component {
   }
 
   componentDidMount() {
-    this.initChartData(this.props.url, moment().subtract(30, 'days').format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));
+    this.initChartData(this.props.url, this.props.userId, moment().subtract(30, 'days').format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));
     window.onresize = () => {
       this.homeSetEchart();
     }
@@ -46,11 +46,10 @@ class ChartDataComponent extends React.Component {
     myChart.setOption(option);
   }
 
-  initChartData(url, startTime, endTime) {
-    api.post(url, {startTime: startTime, endTime: endTime})
+  initChartData(url, userId, startTime, endTime) {
+    api.post(url, {userId: userId, startTime: startTime, endTime: endTime})
         .then(function (response) {
           let res = response.data;
-          console.log('tubiao'+JSON.stringify(res))
           if (res.status === 'success') {
             this.setState({
               dates: res.data.dates, counts: res.data.counts

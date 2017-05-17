@@ -29,7 +29,6 @@ class PersonInfoComponent extends React.Component {
     api.post(apiPath.getUserInfo, {userId: userId})
         .then(function (response) {
           let res = response.data;
-          console.log('ssss'+JSON.stringify(res))
           if (res.status === 'success') {
             this.setState({
               userId: res.data.user_id,
