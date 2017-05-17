@@ -50,6 +50,22 @@ class ChartDataComponent extends React.Component {
     myChart.setOption(option);
   }
 
+  initChartData2(startTime, endTime) {
+    api.post(apiPath.getRegister, {startTime: startTime, endTime: endTime})
+        .then(function (response) {
+          let res = response.data;
+          console.log(JSON.stringify(res));
+          if (res.status === 'success') {
+            this.setState({
+              dates: res.data.dates, counts: res.data.counts
+            });
+            this.homeSetEchart();
+          } else {
+            // message.error('网络请求失败');
+          }
+        }.bind(this))
+  }
+
   initChartData(url, startTime, endTime) {
     api.post(url, {startTime: startTime, endTime: endTime})
         .then(function (response) {
@@ -75,11 +91,11 @@ class ChartDataComponent extends React.Component {
     const menu = (
         <Menu>
           <Menu.Item key="0">
-            <a onClick={()=>{this.setState({recentDays: '最近30天'});this.initChartData(moment().subtract(30, 'days').format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));}}>最近30天</a>
+            <a onClick={()=>{this.setState({recentDays: '最近30天'});this.initChartData2(moment().subtract(30, 'days').format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));}}>最近30天</a>
           </Menu.Item>
           <Menu.Divider />
           <Menu.Item key="1">
-            <a onClick={()=>{this.setState({recentDays: '最近7天'});this.initChartData(moment().subtract(7, 'days').format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));}}>最近7天</a>
+            <a onClick={()=>{this.setState({recentDays: '最近7天'});this.initChartData2(moment().subtract(7, 'days').format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));}}>最近7天</a>
           </Menu.Item>
         </Menu>
     );

@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import { Link } from 'react-router';
+import { Modal } from 'antd';
 import TotalMsgComponent from '../components/TotalMsgComponent';
 import {api, apiPath} from '../utils/WebAPI';
 import TableComponent from '../components/TableComponent';
@@ -52,16 +53,57 @@ class SignManage extends React.Component {
       render: (a,b,c) => {
         if (b.user_name === null) {
           return '';
+        } else {
+          return <div>
+            <a href={b.url1}>文件1.doc</a><br />
+            <a href={b.url2}>文件2.doc</a>
+          </div>
         }
-        return <div>
-          <a href={b.url1}>文件1.doc</a><br />
-          <a href={b.url2}>文件2.doc</a>
-        </div>}
+      }
+    }, {
+      title: '状态',
+      dataIndex: 'trade_status',
+      key: 'trade_status',
+      render: (a,b,c) => {
+        if (b.user_name === null) {
+          return '';
+        } else {
+          if (b.status === 1) {
+            return '已通过';
+          } else if (b.status === 0) {
+            return '待审核';
+          } else if (b.status === -1) {
+            return '已拒绝';
+          }
+        }
+      }
     }, {
       title: '操作',
       dataIndex: 'operation',
       key: 'operation',
+      width: 120,
       render: (a,b,c) => {
+        if (b.user_name === null) {
+          return '';
+        } else {
+          if (b.status === 1) {
+            return <div style={{color: '#f99b62', fontSize: 12,
+              cursor: 'pointer'}}>拒绝</div>
+          } else if (b.status === 0) {
+            return <div>
+            <span style={{
+              borderRight: '1px solid #82cef4', paddingRight: 10, color: '#4fcbfe', fontSize: 12, cursor: 'pointer'
+            }}>通过</span>
+              <span style={{
+                color: '#f99b62', paddingLeft: 10, fontSize: 12, cursor: 'pointer'
+              }}>拒绝</span>
+            </div>
+          } else if (b.status === -1) {
+            return  <div style={{
+               color: '#4fcbfe', fontSize: 12, cursor: 'pointer'
+            }}>通过</div>
+          }
+        }
 
       }
     }];
