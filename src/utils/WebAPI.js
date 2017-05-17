@@ -7,6 +7,13 @@ export const apiPath = {
   getBase: 'admin/get/base',
   getRegister: 'admin/register/situation',
   getSign: 'admin/get/sign',
+  passSign: 'admin/pass/sign',
+  cancelSign: 'admin/reject/sign',
+  getRecharge: 'admin/recharge/situation',
+  getPurchase: 'admin/purchase/situation',
+  getUserInfo: 'admin/user/base',
+  getRegTab: 'admin/user/all',
+  getTrade: 'admin/trade/all',
 };
 
 export const api = {
