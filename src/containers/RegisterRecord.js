@@ -11,7 +11,9 @@ import ChartDataComponent from '../components/ChartDataComponent';
 const columns = [{
   title: '用户ID', dataIndex: 'userId', key: 'userId',
 }, {
-  title: '姓名', dataIndex: 'userName', key: 'userName', render: (a,b,c) => {window.localStorage.setItem('userId', b.userId);return <Link to="/info">{a}</Link>;},
+  title: '姓名', dataIndex: 'userName', key: 'userName', render: (a,b,c) => {
+    return <a onClick={() => {window.localStorage.setItem('userId', b.userId);window.location.hash='/info'}}>{a}</a>;
+  },
 }, {
   title: '手机号', dataIndex: 'userPhone', key: 'userPhone',
 }, {

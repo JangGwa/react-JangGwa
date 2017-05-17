@@ -117,7 +117,9 @@ class SignManage extends React.Component {
       title: '申请用户',
       dataIndex: 'user_name',
       key: 'user_name',
-      render: text => <Link to="/info">{text}</Link>,
+      render: (a,b,c) => {
+        return <a onClick={() => {window.localStorage.setItem('userId', b.userId);window.location.hash='/info'}}>{a}</a>;
+      },
     }, {
       title: '上传资料',
       dataIndex: 'upload',
