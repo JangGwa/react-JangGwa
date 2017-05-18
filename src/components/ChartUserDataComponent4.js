@@ -27,7 +27,7 @@ class ChartDataComponent extends React.Component {
   }
 
   homeSetEchart = () => {
-    var myChart = echarts.init(document.getElementById("fchart1"),'walden');
+    var myChart = echarts.init(document.getElementById("fchart4"),'walden');
 
     // 指定图表的配置项和数据
     var option = {
@@ -94,7 +94,7 @@ class ChartDataComponent extends React.Component {
           </div>
           <Button type="primary" style={{ marginRight: 10 }} onClick={this.exportModal}>导出Excel</Button>
         </div>
-        <div id="fchart1" style={{ height: 300 }}></div>
+        <div id="fchart4" style={{ height: 300 }}></div>
       </div>
     );
   }

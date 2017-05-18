@@ -7,6 +7,9 @@ import {api, apiPath} from '../utils/WebAPI';
 import moment from 'moment';
 import TotalMsgComponent from '../components/TotalMsgComponent';
 import ChartUserDataComponent from '../components/ChartUserDataComponent';
+import ChartUserDataComponent2 from '../components/ChartUserDataComponent2';
+import ChartUserDataComponent3 from '../components/ChartUserDataComponent3';
+import ChartUserDataComponent4 from '../components/ChartUserDataComponent4';
 import TableComponent from '../components/TableComponent';
 import PersonInfoComponent from '../components/PersonInfoComponent';
 import LoginRecord from './RegisterRecord'
@@ -270,7 +273,7 @@ class PersonInfo extends React.Component {
               </TabPane>
 
               <TabPane tab="发送短信" key="2">
-                <ChartUserDataComponent
+                <ChartUserDataComponent2
                     userId={userId}
                     url={apiPath.getUserSend}
                 />
@@ -289,7 +292,7 @@ class PersonInfo extends React.Component {
               </TabPane>
 
               <TabPane tab="充值" key="3">
-                <ChartUserDataComponent
+                <ChartUserDataComponent3
                     userId={userId}
                     url={apiPath.getRecharge}
                 />
@@ -308,7 +311,7 @@ class PersonInfo extends React.Component {
               </TabPane>
 
               <TabPane tab="短信包购买" key="4">
-                <ChartUserDataComponent
+                <ChartUserDataComponent4
                     userId={userId}
                     url={apiPath.getPurchase}
                 />

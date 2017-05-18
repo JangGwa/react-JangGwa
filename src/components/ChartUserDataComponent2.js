@@ -27,7 +27,7 @@ class ChartDataComponent extends React.Component {
   }
 
   homeSetEchart = () => {
-    var myChart = echarts.init(document.getElementById("fchart1"),'walden');
+    var myChart = echarts.init(document.getElementById("fchart2"),'walden');
 
     // 指定图表的配置项和数据
     var option = {
@@ -50,6 +50,7 @@ class ChartDataComponent extends React.Component {
     api.post(url, {userId: userId, startTime: startTime, endTime: endTime})
         .then(function (response) {
           let res = response.data;
+          console.log('chartchulai'+JSON.stringify(res))
           if (res.status === 'success') {
             this.setState({
               dates: res.data.dates, counts: res.data.counts
@@ -94,7 +95,7 @@ class ChartDataComponent extends React.Component {
           </div>
           <Button type="primary" style={{ marginRight: 10 }} onClick={this.exportModal}>导出Excel</Button>
         </div>
-        <div id="fchart1" style={{ height: 300 }}></div>
+        <div id="fchart2" style={{ height: 300 }}></div>
       </div>
     );
   }
