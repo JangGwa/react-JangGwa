@@ -18,6 +18,10 @@ export const apiPath = {
   getUserLoginList: 'admin/user/login/list',
   getUserSend: 'admin/user/send/graph',
   getUserSendList: 'admin/user/send/list',
+  getUserRecharge: 'admin/user/recharge/graph',
+  getUserRechargeList: 'admin/user/recharge/list',
+  getUserPurchase: 'admin/user/purchase/graph',
+  getUserPurchaseList: 'admin/user/purchase/list',
 };
 
 export const api = {

@@ -2,13 +2,14 @@
  * Created by zkw on 2017/5/16.
  */
 import React from 'react';
-import { Tabs, Table, Pagination } from 'antd';
+import { Tabs, Table, Pagination, Button } from 'antd';
 import {api, apiPath} from '../utils/WebAPI';
 import moment from 'moment';
 import TotalMsgComponent from '../components/TotalMsgComponent';
 import ChartUserDataComponent from '../components/ChartUserDataComponent';
 import TableComponent from '../components/TableComponent';
 import PersonInfoComponent from '../components/PersonInfoComponent';
+import LoginRecord from './RegisterRecord'
 
 const TabPane = Tabs.TabPane;
 
@@ -65,61 +66,63 @@ const columns2 = [{
       key: 'operation',
 }];
 
-const dataSource3 = [{
-  key: '1',
-  id: 1,
-  rechargeTime: '2017年1月1日',
-  rechargeNum: 100,
-  payType: '操作',
-  rechargeStatus: '状态',
-}];
-
 const columns3 = [{
   title: '订单ID',
-  dataIndex: 'id',
-  key: 'id',
+  dataIndex: 'trade_number',
+  key: 'trade_number',
 }, {
   title: '充值时间',
-  dataIndex: 'rechargeTime',
-  key: 'rechargeTime',
+  dataIndex: 'create_time',
+  key: 'create_time',
 }, {
   title: '充值金额',
-  dataIndex: 'rechargeNum',
-  key: 'rechargeNum',
+  dataIndex: 'total_price',
+  key: 'total_price',
 }, {
   title: '支付方式',
-  dataIndex: 'payType',
-  key: 'payType',
+  dataIndex: 'payment_type',
+  key: 'payment_type',
 }, {
   title: '充值状态',
-  dataIndex: 'rechargeStatus',
-  key: 'rechargeStatus',
+  dataIndex: 'trade_type',
+  key: 'trade_type',
 }];
 
 const columns4 = [{
   title: '订单ID',
-  dataIndex: 'id',
-  key: 'id',
+  dataIndex: 'tradeNum',
+  key: 'tradeNum',
 }, {
   title: '购买时间',
-  dataIndex: 'buyTime',
-  key: 'buyTime',
+  dataIndex: 'tradeTime',
+  key: 'tradeTime',
 }, {
   title: '购买类型',
-  dataIndex: 'buyType',
-  key: 'buyType',
+  dataIndex: 'tradeSubject',
+  key: 'tradeSubject',
 }, {
   title: '金额总计',
-  dataIndex: 'moneyCount',
-  key: 'moneyCount',
+  dataIndex: 'tradePrice',
+  key: 'tradePrice',
 }, {
   title: '支付方式',
-  dataIndex: 'payType',
-  key: 'payType',
+  dataIndex: 'paymentType',
+  key: 'paymentType',
 }, {
   title: '购买状态',
-  dataIndex: 'buyStatus',
-  key: 'buyStatus',
+  dataIndex: 'tradeStatus',
+  key: 'tradeStatus',
+  render: (a,b,c) => {
+    if (b.tradeStatus === 0) {
+      return <Button type="primary" style={{height: 25, border: '1px solid #797979', backgroundColor: '#797979'}}>已关闭</Button>
+    } else if (b.tradeStatus === 1) {
+      return <Button type="primary" style={{height: 25, border: '1px solid #23d134', backgroundColor: '#23d134'}}>待支付</Button>
+    } else if (b.tradeStatus === 2) {
+      return <Button type="primary" style={{height: 25, border: '1px solid #3dccff', backgroundColor: '#3dccff'}}>已支付</Button>
+    } else if (b.tradeStatus === 3) {
+      return <Button type="primary" style={{height: 25, border: '1px solid #3dccff', backgroundColor: '#3dccff'}}>已完成</Button>
+    }
+  }
 }];
 
 const columns5 = [{
@@ -144,11 +147,17 @@ class PersonInfo extends React.Component {
       total1: 0,
       dataSource2: [],
       total2: 0,
+      dataSource3: [],
+      total3: 0,
+      dataSource4: [],
+      total4: 0,
     }
   }
   componentDidMount() {
     this.initTableData1(1);
     this.initTableData2(1);
+    this.initTableData3(1);
+    this.initTableData4(1);
   }
 
   initTableData1(page) {
@@ -182,12 +191,50 @@ class PersonInfo extends React.Component {
         }.bind(this))
   }
 
+  initTableData3(page) {
+    let userId = window.localStorage.getItem('userId');
+    api.post(apiPath.getUserRechargeList, {userId: userId, page: page, size: 10})
+        .then(function (response) {
+          let res = response.data;
+          if (res.status === 'success') {
+            this.setState({
+              dataSource3: res.data[0].data, total3: res.data[1].total
+            });
+          } else {
+            // message.error('网络请求失败');
+          }
+        }.bind(this))
+  }
+
+  initTableData4(page) {
+    let userId = window.localStorage.getItem('userId');
+    api.post(apiPath.getUserPurchaseList, {userId: userId, page: page, size: 10})
+        .then(function (response) {
+          let res = response.data;
+          if (res.status === 'success') {
+            this.setState({
+              dataSource4: res.data.data, total4: res.data.total
+            });
+          } else {
+            // message.error('网络请求失败');
+          }
+        }.bind(this))
+  }
+
   onChange1 = (pageNumber) => {
     this.initTableData1(pageNumber);
   }
 
   onChange2 = (pageNumber) => {
     this.initTableData2(pageNumber);
+  }
+
+  onChange3 = (pageNumber) => {
+    this.initTableData3(pageNumber);
+  }
+
+  onChange4 = (pageNumber) => {
+    this.initTableData4(pageNumber);
   }
 
   callback = (key) => {
@@ -242,25 +289,45 @@ class PersonInfo extends React.Component {
               </TabPane>
 
               <TabPane tab="充值" key="3">
-                <ChartUserDataComponent />
-                <TableComponent
-                    columns={columns3}
-                    dataSource={dataSource3}
+                <ChartUserDataComponent
+                    userId={userId}
+                    url={apiPath.getRecharge}
                 />
+                <div style={{marginTop: 50}}>
+                  <Table dataSource={this.state.dataSource3} columns={columns3} pagination={false}/>
+                  <div style={{
+                    backgroundColor: '#fff', height: 50, paddingRight: 10
+                  }}>
+                    <Pagination
+                        style={{float: 'right', marginBottom: 20, marginTop: 10}}
+                        defaultCurrent={1}
+                        onChange={this.onChange3}
+                        total={this.state.total3}/>
+                  </div>
+                </div>
               </TabPane>
+
               <TabPane tab="短信包购买" key="4">
-                <ChartUserDataComponent />
-                <TableComponent
-                    columns={columns4}
-                    dataSource={dataSource3}
+                <ChartUserDataComponent
+                    userId={userId}
+                    url={apiPath.getPurchase}
                 />
+                <div style={{marginTop: 50}}>
+                  <Table dataSource={this.state.dataSource4} columns={columns4} pagination={false}/>
+                  <div style={{
+                    backgroundColor: '#fff', height: 50, paddingRight: 10
+                  }}>
+                    <Pagination
+                        style={{float: 'right', marginBottom: 20, marginTop: 10}}
+                        defaultCurrent={1}
+                        onChange={this.onChange4}
+                        total={this.state.total4}/>
+                  </div>
+                </div>
               </TabPane>
+
               <TabPane tab="操作记录" key="5">
-                <ChartUserDataComponent />
-                <TableComponent
-                    columns={columns5}
-                    dataSource={dataSource3}
-                />
+                <LoginRecord />
               </TabPane>
             </Tabs>
 
