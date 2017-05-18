@@ -77,16 +77,16 @@ class PersonInfoComponent extends React.Component {
             })}
           </div>
           <div style={{marginTop: 10, marginLeft: 20}}>
-            <span>账户余额:</span><span style={{marginLeft: 10}}>{this.state.accountBalance}</span>
+            <span>账户余额:</span><span style={{marginLeft: 10}}>{this.state.accountBalance}元</span>
           </div>
           <div style={{marginTop: 10, marginLeft: 20}}>
-            <span>纯文字短信余量:</span><span style={{marginLeft: 10}}>{this.state.accountTextRemain}</span>
+            <span>纯文字短信余量:</span><span style={{marginLeft: 10}}>{this.state.accountTextRemain}条</span>
           </div>
           <div style={{marginTop: 10, marginLeft: 20}}>
-            <span>文字反馈短信余量:</span><span style={{marginLeft: 10}}>{this.state.accountReplyRemain}</span>
+            <span>文字反馈短信余量:</span><span style={{marginLeft: 10}}>{this.state.accountReplyRemain}条</span>
           </div>
           <div style={{marginTop: 10, marginLeft: 20}}>
-            <span>链接反馈短信余量:</span><span style={{marginLeft: 10}}>{this.state.accountLinkRemain}</span>
+            <span>链接反馈短信余量:</span><span style={{marginLeft: 10}}>{this.state.accountLinkRemain}条</span>
           </div>
         </div>
     );

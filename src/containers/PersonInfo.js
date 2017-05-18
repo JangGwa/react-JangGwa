@@ -23,10 +23,6 @@ const columns1 = [{
   title: '操作时长',
   dataIndex: 'last_option_time',
   key: 'last_option_time',
-}, {
-  title: '操作次数',
-  dataIndex: 'operationNum',
-  key: 'operationNum',
 }];
 
 const columns2 = [{

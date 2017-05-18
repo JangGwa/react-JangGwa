@@ -57,12 +57,12 @@ class root extends React.Component {
               selectedKeys={this.state.current}
               mode="inline"
             >
-              <Menu.Item key="1"><Link to="/register">用户注册</Link></Menu.Item>
-              <Menu.Item key="2"><Link to="/sign">签名管理</Link></Menu.Item>
-              <Menu.Item key="3"><Link to="/login">登录记录</Link></Menu.Item>
-              <Menu.Item key="4"><Link to="/send">发送短信</Link></Menu.Item>
-              <Menu.Item key="5"><Link to="/recharge">充值</Link></Menu.Item>
-              <Menu.Item key="6"><Link to="/buy">短信包购买</Link></Menu.Item>
+              <Menu.Item key="1"><Link to="/register"><Icon type="user" /><span>用户注册</span></Link></Menu.Item>
+              <Menu.Item key="2"><Link to="/sign"><Icon type="tag-o" /><span>签名管理</span></Link></Menu.Item>
+              <Menu.Item key="3"><Link to="/login"><Icon type="login" /><span>登录记录</span></Link></Menu.Item>
+              <Menu.Item key="4"><Link to="/send"><Icon type="message" /><span>发送短信</span></Link></Menu.Item>
+              <Menu.Item key="5"><Link to="/recharge"><Icon type="pay-circle-o" /><span>充值</span></Link></Menu.Item>
+              <Menu.Item key="6"><Link to="/buy"><Icon type="red-envelope" /><span>短信包购买</span></Link></Menu.Item>
             </Menu>
           </Sider>
           <Content>

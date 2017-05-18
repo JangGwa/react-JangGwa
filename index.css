@@ -117,3 +117,28 @@ html, body, #root {
   height: 100%;
   background: #323f58;
 }
+
+.tag-view1 {
+  background: #fa4c00 !important;
+  color: #fff !important;
+}
+
+.tag-view2 {
+  background: #fbaa10 !important;
+  color: #fff !important;
+}
+
+.tag-view3 {
+  background: #38b6f4 !important;
+  color: #fff !important;
+}
+
+.tag-view4 {
+  background: #88d169 !important;
+  color: #fff !important;
+}
+
+.tag-view5 {
+  background: #a79476 !important;
+  color: #fff !important;
+}

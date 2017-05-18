@@ -63,7 +63,7 @@ class LoginPage extends React.Component {
           <div style={{color: '#FFF', fontSize: 20, marginTop: -30}}>慕云短信后台管理系统</div>
           <Card style={{width: 300, height: 200, textAlign: 'center', marginTop: 30}}>
             <Input placeholder="用户名" style={{marginTop: 15}} onChange={this.userNameChange} value={this.state.username}/>
-            <Input placeholder="密码" style={{marginTop: 20}} onChange={this.passwordChange}/>
+            <Input type="password" placeholder="密码" style={{marginTop: 20}} onChange={this.passwordChange}/>
             <Button type="primary" style={{marginTop: 20, width: 250}} onClick={this.login}>登录</Button>
           </Card>
         </div>

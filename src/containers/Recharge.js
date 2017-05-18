@@ -24,6 +24,7 @@ class Recharge extends React.Component {
     api.post(apiPath.getTrade, {action: 1, page: page, size: 10, tradeType: 1})
         .then(function (response) {
           let res = response.data;
+          console.log('rechargeTable'+JSON.stringify(res))
           if (res.status === 'success') {
             this.setState({
               dataSource: res.data.data, total: res.data.total
