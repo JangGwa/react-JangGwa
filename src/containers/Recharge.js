@@ -21,7 +21,7 @@ class Recharge extends React.Component {
   }
 
   initTableData(page) {
-    api.post(apiPath.getTrade, {page: page, size: 10, tradeType: 1})
+    api.post(apiPath.getTrade, {action: 1, page: page, size: 10, tradeType: 1})
         .then(function (response) {
           let res = response.data;
           if (res.status === 'success') {
@@ -90,6 +90,7 @@ class Recharge extends React.Component {
       <div className="content-view">
         <TotalMsgComponent />
         <ChartDataComponent
+            type={4}
             url={apiPath.getRecharge}
             chartStyle={{ marginTop: 50 }}
         />

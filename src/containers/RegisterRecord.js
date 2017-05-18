@@ -46,10 +46,9 @@ class RegisterRecord extends React.Component {
   }
 
   initTableData(page) {
-    api.post(apiPath.getRegTab, {page: page, size: 10})
+    api.post(apiPath.getRegTab, {action: 1, page: page, size: 10})
         .then(function (response) {
           let res = response.data;
-          console.log('table' + JSON.stringify(res))
           if (res.status === 'success') {
             this.setState({
               dataSource: res.data.data, total: res.data.total
@@ -69,6 +68,7 @@ class RegisterRecord extends React.Component {
         <div className="content-view">
           <TotalMsgComponent />
           <ChartDataComponent
+              type={1}
               url={apiPath.getRegister}
               chartStyle={{marginTop: 50}}
           />

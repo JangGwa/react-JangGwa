@@ -70,11 +70,11 @@ class ChartDataComponent extends React.Component {
     const menu = (
         <Menu>
           <Menu.Item key="0">
-            <a onClick={()=>{this.setState({recentDays: '最近30天'});this.initChartData(this.props.url, moment().subtract(30, 'days').format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));}}>最近30天</a>
+            <a onClick={()=>{this.setState({recentDays: '最近30天'});this.initChartData(this.props.url, this.props.userId, moment().subtract(30, 'days').format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));}}>最近30天</a>
           </Menu.Item>
           <Menu.Divider />
           <Menu.Item key="1">
-            <a onClick={()=>{this.setState({recentDays: '最近7天'});this.initChartData(this.props.url, moment().subtract(7, 'days').format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));}}>最近7天</a>
+            <a onClick={()=>{this.setState({recentDays: '最近7天'});this.initChartData(this.props.url, this.props.userId, moment().subtract(7, 'days').format('YYYY-MM-DD'), moment().format('YYYY-MM-DD'));}}>最近7天</a>
           </Menu.Item>
         </Menu>
     );

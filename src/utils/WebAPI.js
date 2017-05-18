@@ -14,6 +14,8 @@ export const apiPath = {
   getUserInfo: 'admin/user/base',
   getRegTab: 'admin/user/all',
   getTrade: 'admin/trade/all',
+  getSend: 'admin/send/graph',
+  getSendList: 'admin/send/list',
   getUserLogin: 'admin/user/login/graph',
   getUserLoginList: 'admin/user/login/list',
   getUserSend: 'admin/user/send/graph',
@@ -22,6 +24,8 @@ export const apiPath = {
   getUserRechargeList: 'admin/user/recharge/list',
   getUserPurchase: 'admin/user/purchase/graph',
   getUserPurchaseList: 'admin/user/purchase/list',
+  getLogin: 'admin/login/graph',
+  getLoginList: 'admin/login/list',
 };
 
 export const api = {

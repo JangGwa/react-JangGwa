@@ -3,34 +3,21 @@
  */
 import React from 'react';
 import { Link } from 'react-router';
+import {Table, Pagination, Button} from 'antd';
+import moment from 'moment';
+import {api, apiPath} from '../utils/WebAPI';
 import TotalMsgComponent from '../components/TotalMsgComponent';
 import ChartDataComponent from '../components/ChartDataComponent';
 import TableComponent from '../components/TableComponent';
 
-const dataSource = [{
-  key: '1',
-  id: '0001',
-  name: '胡彦斌',
-  phone: 15706844099,
-  loginTime: '2017年1月1日',
-  operationTime: '1h 3min',
-}, {
-  key: '2',
-  id: '0001',
-  name: '胡彦斌',
-  phone: 15706844099,
-  loginTime: '2017年1月1日',
-  operationTime: '1h 3min',
-}];
-
 const columns = [{
   title: '用户ID',
-  dataIndex: 'id',
-  key: 'id',
+  dataIndex: 'user_id',
+  key: 'user_id',
 }, {
   title: '姓名',
-  dataIndex: 'name',
-  key: 'name',
+  dataIndex: 'user_name',
+  key: 'user_name',
   render: text => <Link to="/info">{text}</Link>,
 }, {
   title: '手机号',
@@ -38,25 +25,71 @@ const columns = [{
   key: 'phone',
 }, {
   title: '登录时间',
-  dataIndex: 'loginTime',
-  key: 'loginTime',
+  dataIndex: 'login_time',
+  key: 'login_time',
 }, {
   title: '操作时长',
-  dataIndex: 'operationTime',
-  key: 'operationTime',
+  dataIndex: 'last_option_time',
+  key: 'last_option_time',
+  render: (a,b,c) => {
+    let last = a;
+    let first = b.login_time;
+    return <div>{moment(moment(last)-moment(first)).format('YYYY-MM-DD hh:mm:ss')}</div>
+  }
 }];
 
 class RegisterRecord extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataSource: [],
+      total: 0,
+    }
+  }
+  componentDidMount() {
+    this.initTableData(1);
+  }
+
+  initTableData(page) {
+    api.post(apiPath.getLoginList, {action: 1, page: page, size: 10})
+        .then(function (response) {
+          let res = response.data;
+          console.log('loginTable'+JSON.stringify(res))
+          if (res.status === 'success') {
+            this.setState({
+              dataSource: res.data[0].data, total: res.data[1].total
+            });
+          } else {
+            // message.error('网络请求失败');
+          }
+        }.bind(this))
+  }
+
+  onChange = (pageNumber) => {
+    this.initTableData(pageNumber);
+  }
   render() {
     return (
-      <div className="content-view">
-        <TotalMsgComponent />
-        <ChartDataComponent chartStyle={{ marginTop: 50 }} />
-        <TableComponent
-          columns={columns}
-          dataSource={dataSource}
-        />
-      </div>
+        <div className="content-view">
+          <TotalMsgComponent />
+          <ChartDataComponent
+              type={2}
+              url={apiPath.getLogin}
+              chartStyle={{ marginTop: 50 }}
+          />
+          <div style={{marginTop: 50}}>
+            <Table dataSource={this.state.dataSource} columns={columns} pagination={false}/>
+            <div style={{
+              backgroundColor: '#fff', height: 50, paddingRight: 10
+            }}>
+              <Pagination
+                  style={{float: 'right', marginBottom: 20, marginTop: 10}}
+                  defaultCurrent={1}
+                  onChange={this.onChange}
+                  total={this.state.total}/>
+            </div>
+          </div>
+        </div>
     );
   }
 }

@@ -23,7 +23,7 @@ class BuyMsgPackage extends React.Component {
   }
 
   initTableData(page) {
-    api.post(apiPath.getTrade, {page: page, size: 10, tradeType: 2})
+    api.post(apiPath.getTrade, {action: 1, page: page, size: 10, tradeType: 2})
         .then(function (response) {
           let res = response.data;
           if (res.status === 'success') {
@@ -49,6 +49,7 @@ class BuyMsgPackage extends React.Component {
       title: '用户ID',
       dataIndex: 'userId',
       key: 'userId',
+      width:60,
     }, {
       title: '姓名',
       dataIndex: 'userName',

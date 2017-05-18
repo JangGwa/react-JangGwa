@@ -41,28 +41,28 @@ const columns2 = [{
   key: 'create_time',
 }, {
   title: '短信类型',
-  dataIndex: 'msgType',
-  key: 'msgType',
+  dataIndex: 'send_type',
+  key: 'send_type',
 }, {
   title: '短信标签',
-  dataIndex: 'msgSign',
-  key: 'msgSign',
+  dataIndex: 'signature_name',
+  key: 'signature_name',
 }, {
   title: '短信发送量',
-  dataIndex: 'sendNum',
-  key: 'sendNum',
+  dataIndex: 'send_count',
+  key: 'send_count',
 }, {
   title: '发送成功量',
-  dataIndex: 'successNum',
-  key: 'successNum',
+  dataIndex: 'success_count',
+  key: 'success_count',
 }, {
   title: '已阅读量',
-  dataIndex: 'readNum',
-  key: 'readNum',
+  dataIndex: 'read_count',
+  key: 'read_count',
 }, {
   title: '已回复量',
-  dataIndex: 'replyNum',
-  key: 'replyNum',
+  dataIndex: 'reply_count',
+  key: 'reply_count',
 }, {
   title: '操作',
       dataIndex: 'operation',
@@ -89,6 +89,17 @@ const columns3 = [{
   title: '充值状态',
   dataIndex: 'trade_type',
   key: 'trade_type',
+  render: (a,b,c) => {
+    if (b.payment_status === 0) {
+      return <Button type="primary" style={{height: 25, border: '1px solid #797979', backgroundColor: '#797979'}}>已关闭</Button>
+    } else if (b.payment_status === 1) {
+      return <Button type="primary" style={{height: 25, border: '1px solid #23d134', backgroundColor: '#23d134'}}>待支付</Button>
+    } else if (b.payment_status === 2) {
+      return <Button type="primary" style={{height: 25, border: '1px solid #3dccff', backgroundColor: '#3dccff'}}>已支付</Button>
+    } else if (b.payment_status === 3) {
+      return <Button type="primary" style={{height: 25, border: '1px solid #3dccff', backgroundColor: '#3dccff'}}>已完成</Button>
+    }
+  }
 }];
 
 const columns4 = [{
@@ -183,7 +194,6 @@ class PersonInfo extends React.Component {
     api.post(apiPath.getUserSendList, {userId: userId, page: page, size: 10})
         .then(function (response) {
           let res = response.data;
-          console.log('table2'+JSON.stringify(response))
           if (res.status === 'success') {
             this.setState({
               dataSource2: res.data[0].data, total2: res.data[1].total
