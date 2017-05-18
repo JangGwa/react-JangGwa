@@ -54,7 +54,7 @@ class BuyMsgPackage extends React.Component {
       title: '姓名',
       dataIndex: 'userName',
       key: 'userName',
-      width: 50,
+      width: 70,
       render: (a,b,c) => {
         return <a onClick={() => {window.localStorage.setItem('userId', b.userId);window.location.hash='/info'}}>{a}</a>;
       },

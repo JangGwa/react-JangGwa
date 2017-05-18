@@ -57,13 +57,6 @@ const columns2 = [{
   title: '已回复量',
   dataIndex: 'reply_count',
   key: 'reply_count',
-}, {
-  title: '操作',
-      dataIndex: 'operation',
-      key: 'operation',
-  render: (a,b,c) => {
-    return <Button style={{width: 80}} type="primary" onClick={() => {window.localStorage.setItem('userId', b.user_id);window.location.hash='/info'}}>详情查看</Button>;
-  },
 }];
 
 const columns3 = [{
