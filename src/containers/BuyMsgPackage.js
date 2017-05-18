@@ -100,6 +100,7 @@ class BuyMsgPackage extends React.Component {
         <div className="content-view">
           <TotalMsgComponent />
           <ChartDataComponent
+              type={5}
               url={apiPath.getPurchase}
               chartStyle={{ marginTop: 50 }}
           />

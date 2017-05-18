@@ -218,6 +218,7 @@ class PersonInfo extends React.Component {
     api.post(apiPath.getUserPurchaseList, {action: 1, userId: userId, page: page, size: 10})
         .then(function (response) {
           let res = response.data;
+          console.log('table4'+JSON.stringify(res))
           if (res.status === 'success') {
             this.setState({
               dataSource4: res.data.data, total4: res.data.total
