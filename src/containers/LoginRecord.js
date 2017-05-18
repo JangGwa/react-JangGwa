@@ -18,7 +18,9 @@ const columns = [{
   title: '姓名',
   dataIndex: 'user_name',
   key: 'user_name',
-  render: text => <Link to="/info">{text}</Link>,
+  render: (a,b,c) => {
+    return <a onClick={() => {window.localStorage.setItem('userId', b.user_id);window.location.hash='/info'}}>{a}</a>;
+  },
 }, {
   title: '手机号',
   dataIndex: 'phone',
@@ -31,11 +33,6 @@ const columns = [{
   title: '操作时长',
   dataIndex: 'last_option_time',
   key: 'last_option_time',
-  render: (a,b,c) => {
-    let last = a;
-    let first = b.login_time;
-    return <div>{moment(moment(last)-moment(first)).format('YYYY-MM-DD hh:mm:ss')}</div>
-  }
 }];
 
 class RegisterRecord extends React.Component {

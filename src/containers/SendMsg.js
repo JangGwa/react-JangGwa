@@ -18,12 +18,12 @@ const columns = [{
   dataIndex: 'user_name',
   key: 'user_name',
   render: (a,b,c) => {
-    return <a onClick={() => {window.localStorage.setItem('userId', b.userId);window.location.hash='/info'}}>{a}</a>;
+    return <a onClick={() => {window.localStorage.setItem('userId', b.user_id);window.location.hash='/info'}}>{a}</a>;
   },
 }, {
   title: '手机号',
-  dataIndex: 'phone',
-  key: 'phone',
+  dataIndex: 'user_phone',
+  key: 'user_phone',
 }, {
   title: '发送时间',
   dataIndex: 'create_time',
@@ -56,6 +56,9 @@ const columns = [{
   title: '操作',
   dataIndex: 'operation',
   key: 'operation',
+  render: (a,b,c) => {
+    return <Button style={{width: 80}} type="primary" onClick={() => {window.localStorage.setItem('userId', b.user_id);window.location.hash='/info'}}>详情查看</Button>;
+  },
 }];
 
 class SendMsg extends React.Component {
@@ -71,7 +74,7 @@ class SendMsg extends React.Component {
   }
 
   initTableData(page) {
-    api.post(apiPath.getSendList, {page: page, size: 10})
+    api.post(apiPath.getSendList, {action: 1, page: page, size: 10})
         .then(function (response) {
           let res = response.data;
           console.log('sendtable'+JSON.stringify(res))
@@ -93,6 +96,7 @@ class SendMsg extends React.Component {
         <div className="content-view">
           <TotalMsgComponent />
           <ChartDataComponent
+              type={3}
               url={apiPath.getSend}
               chartStyle={{ marginTop: 50 }}
           />

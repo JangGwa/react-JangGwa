@@ -113,7 +113,7 @@ class ChartDataComponent extends React.Component {
         url = apiPath.getLoginList;
         break;
       case 3: // 发送短信
-        url = '';
+        url = apiPath.getSendList;
         break;
       default:
         url = '';

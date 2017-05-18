@@ -26,6 +26,7 @@ export const apiPath = {
   getUserPurchaseList: 'admin/user/purchase/list',
   getLogin: 'admin/login/graph',
   getLoginList: 'admin/login/list',
+  getUserOptionList: 'admin/user/option/list',
 };
 
 export const api = {

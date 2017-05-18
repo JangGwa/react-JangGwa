@@ -10,7 +10,6 @@ import ChartUserDataComponent from '../components/ChartUserDataComponent';
 import ChartUserDataComponent2 from '../components/ChartUserDataComponent2';
 import ChartUserDataComponent3 from '../components/ChartUserDataComponent3';
 import ChartUserDataComponent4 from '../components/ChartUserDataComponent4';
-import TableComponent from '../components/TableComponent';
 import PersonInfoComponent from '../components/PersonInfoComponent';
 import LoginRecord from './RegisterRecord'
 
@@ -24,11 +23,6 @@ const columns1 = [{
   title: '操作时长',
   dataIndex: 'last_option_time',
   key: 'last_option_time',
-  render: (a,b,c) => {
-    let last = a;
-    let first = b.login_time;
-    return <div>{moment(moment(last)-moment(first)).format('YYYY-MM-DD hh:mm:ss')}</div>
-  }
 }, {
   title: '操作次数',
   dataIndex: 'operationNum',
@@ -67,6 +61,9 @@ const columns2 = [{
   title: '操作',
       dataIndex: 'operation',
       key: 'operation',
+  render: (a,b,c) => {
+    return <Button style={{width: 80}} type="primary" onClick={() => {window.localStorage.setItem('userId', b.user_id);window.location.hash='/info'}}>详情查看</Button>;
+  },
 }];
 
 const columns3 = [{
@@ -141,16 +138,16 @@ const columns4 = [{
 
 const columns5 = [{
   title: '操作时间',
-  dataIndex: 'operationTime',
-  key: 'operationTime',
+  dataIndex: 'log_time',
+  key: 'log_time',
 }, {
   title: '操作类型',
-  dataIndex: 'operationType',
-  key: 'operationType',
+  dataIndex: 'log_type',
+  key: 'log_type',
 }, {
   title: '操作内容',
-  dataIndex: 'operationContent',
-  key: 'operationContent',
+  dataIndex: 'log_content',
+  key: 'log_content',
 }];
 
 class PersonInfo extends React.Component {
@@ -165,6 +162,8 @@ class PersonInfo extends React.Component {
       total3: 0,
       dataSource4: [],
       total4: 0,
+      dataSource5: [],
+      total5: 0,
     }
   }
   componentDidMount() {
@@ -172,11 +171,12 @@ class PersonInfo extends React.Component {
     this.initTableData2(1);
     this.initTableData3(1);
     this.initTableData4(1);
+    this.initTableData5(1);
   }
 
   initTableData1(page) {
     let userId = window.localStorage.getItem('userId');
-    api.post(apiPath.getUserLoginList, {userId: userId, page: page, size: 10})
+    api.post(apiPath.getUserLoginList, {action: 1, userId: userId, page: page, size: 10})
         .then(function (response) {
           let res = response.data;
           if (res.status === 'success') {
@@ -191,9 +191,10 @@ class PersonInfo extends React.Component {
 
   initTableData2(page) {
     let userId = window.localStorage.getItem('userId');
-    api.post(apiPath.getUserSendList, {userId: userId, page: page, size: 10})
+    api.post(apiPath.getUserSendList, {action: 1, userId: userId, page: page, size: 10})
         .then(function (response) {
           let res = response.data;
+          console.log('table2', JSON.stringify(res))
           if (res.status === 'success') {
             this.setState({
               dataSource2: res.data[0].data, total2: res.data[1].total
@@ -206,7 +207,7 @@ class PersonInfo extends React.Component {
 
   initTableData3(page) {
     let userId = window.localStorage.getItem('userId');
-    api.post(apiPath.getUserRechargeList, {userId: userId, page: page, size: 10})
+    api.post(apiPath.getUserRechargeList, {action: 1, userId: userId, page: page, size: 10})
         .then(function (response) {
           let res = response.data;
           if (res.status === 'success') {
@@ -221,12 +222,28 @@ class PersonInfo extends React.Component {
 
   initTableData4(page) {
     let userId = window.localStorage.getItem('userId');
-    api.post(apiPath.getUserPurchaseList, {userId: userId, page: page, size: 10})
+    api.post(apiPath.getUserPurchaseList, {action: 1, userId: userId, page: page, size: 10})
         .then(function (response) {
           let res = response.data;
           if (res.status === 'success') {
             this.setState({
               dataSource4: res.data.data, total4: res.data.total
+            });
+          } else {
+            // message.error('网络请求失败');
+          }
+        }.bind(this))
+  }
+
+  initTableData5(page) {
+    let userId = window.localStorage.getItem('userId');
+    api.post(apiPath.getUserOptionList, {userId: userId, page: page, size: 10})
+        .then(function (response) {
+          let res = response.data;
+          console.log('table5'+JSON.stringify(res))
+          if (res.status === 'success') {
+            this.setState({
+              dataSource5: res.data[0].data, total5: res.data[1].total
             });
           } else {
             // message.error('网络请求失败');
@@ -248,6 +265,10 @@ class PersonInfo extends React.Component {
 
   onChange4 = (pageNumber) => {
     this.initTableData4(pageNumber);
+  }
+
+  onChange5 = (pageNumber) => {
+    this.initTableData5(pageNumber);
   }
 
   callback = (key) => {
@@ -340,7 +361,18 @@ class PersonInfo extends React.Component {
               </TabPane>
 
               <TabPane tab="操作记录" key="5">
-                <LoginRecord />
+                <div style={{marginTop: 10}}>
+                  <Table dataSource={this.state.dataSource5} columns={columns5} pagination={false}/>
+                  <div style={{
+                    backgroundColor: '#fff', height: 50, paddingRight: 10
+                  }}>
+                    <Pagination
+                        style={{float: 'right', marginBottom: 20, marginTop: 10}}
+                        defaultCurrent={1}
+                        onChange={this.onChange5}
+                        total={this.state.total5}/>
+                  </div>
+                </div>
               </TabPane>
             </Tabs>
 
