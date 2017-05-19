@@ -41,7 +41,7 @@ class root extends React.Component {
       <Layout>
         <Header>
           <div style={{display: 'flex', justifyContent: 'space-between'}}>
-          <span style={{color: '#FFF', fontSize: 17}}>慕云短信后台管理系统</span>
+          <span style={{color: '#FFF', fontSize: 17}}>JangGwa管理系统</span>
             <div className="quit-view" onClick={this.quit}>
               <Icon type="poweroff" style={{color: '#fff'}} />
               <span style={{color: '#fff', marginLeft: 8, fontSize: 13}}>退出</span>

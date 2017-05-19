@@ -60,7 +60,7 @@ class LoginPage extends React.Component {
   render() {
     return (
         <div className="login-main-view">
-          <div style={{color: '#FFF', fontSize: 20, marginTop: -30}}>慕云短信后台管理系统</div>
+          <div style={{color: '#FFF', fontSize: 20, marginTop: -30}}>JangGwa管理系统</div>
           <Card style={{width: 300, height: 200, textAlign: 'center', marginTop: 30}}>
             <Input placeholder="用户名" style={{marginTop: 15}} onChange={this.userNameChange} value={this.state.username}/>
             <Input type="password" placeholder="密码" style={{marginTop: 20}} onChange={this.passwordChange}/>
